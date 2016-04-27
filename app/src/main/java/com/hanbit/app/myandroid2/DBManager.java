@@ -7,10 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 /**
  * Created by USER on 2016-04-27.
  */
-public class DBManager  {
-    static final String DB_STUDENTS = "Students.db";
+public class DBManager {
+    private static final int DATABASE_VERSION = 1;
+    protected static final String DATABASE_NAME = "Hanbit.db";
     static final String TABLE_STUDENTS = "Students";
-    static final int DB_VERSION = 1;
 
     Context mContext = null;
     private static DBManager mDbManager = null;
@@ -24,11 +24,6 @@ public class DBManager  {
     }
     private DBManager(Context context){
         mContext = context;
-        mDatabase = context.openOrCreateDatabase(
-               DB_STUDENTS,
-                Context.MODE_PRIVATE,
-                null
-        );
         // 만일 DB 에 테이블이 존재하지 않으면 생성한다
         mDatabase.execSQL("CREATE TABLE IF NOT EXIST"
                + TABLE_STUDENTS

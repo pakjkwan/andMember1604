@@ -11,8 +11,7 @@ import android.widget.EditText;
  */
 public class MemberActivity2 extends Activity {
     private Context context;
-    MemberDAO memberDAO = new MemberDAO(context,
-            "Member.db", null, 1);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +30,6 @@ public class MemberActivity2 extends Activity {
                 String password = joinPassword.getText().toString();
                 String name = joinName.getText().toString();
 
-                memberDAO.insert(uid, password, name);
                 /*result.setText(memberDAO.getResult());*/
 
             }
@@ -54,6 +52,7 @@ public class MemberActivity2 extends Activity {
         findViewById(R.id.writeBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
             }
         });
     }

@@ -11,10 +11,6 @@
         <activity
             android:name=".MainActivity"
             android:label="메인 액티비티"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".MemberActivity2"
-            android:label="테이블 액티비티"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +19,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".JoinActivity"
+            android:name=".MemberActivity2"
+            android:label="테이블 액티비티"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Join"
             android:label="@string/title_activity_join"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -48,8 +48,12 @@
             android:label="@string/title_activity_crudsample"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".MemberActivity"
+            android:name=".Member"
             android:label="@string/title_activity_member"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Admin"
+            android:label="@string/title_activity_admin"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
