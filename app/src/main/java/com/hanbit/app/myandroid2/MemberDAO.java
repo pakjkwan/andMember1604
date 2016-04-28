@@ -3,69 +3,50 @@ package com.hanbit.app.myandroid2;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
 /**
  * Created by USER on 2016-04-27.
  */
-public class MemberDAO {
+public class MemberDAO extends SQLiteOpenHelper{
     // DBHelper 생성자로 관리할 DB 이름과 버전 정보를 받음
-    public static final String DB_HANBIT = "HANBIT.db";
-    public static final String TABLE_MEMBER = "MEMBER";
-    public static final int DB_VERSION = 1;
 
-    Context mContext = null;
-    private static MemberDAO instance = null;
-    private SQLiteDatabase sqlLite = null;
 
-    public static MemberDAO getInstance(Context context){
-        if (instance == null){
-            instance = new MemberDAO(context);
-        }
-        return instance;
+    public MemberDAO(Context context, String name, SQLiteDatabase.CursorFactory factory, int version, Context mContext) {
+        super(context, Constants.DB_HANBIT, null, Constants.DB_VERSION);
     }
-    private MemberDAO(Context context){
-        mContext = context;
-        sqlLite = context.openOrCreateDatabase(
-                DB_HANBIT,
-                Context.MODE_PRIVATE,
-                null
-        );
-        // 만일 DB 에 테이블이 존재하지 않으면 생성한다
-        sqlLite.execSQL("CREATE TABLE IF NOT EXIST"
-                        + TABLE_MEMBER
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL("CREATE TABLE IF NOT EXIST"
+                        + Constants.TABLE_MEMBER
                         + "( uid TEXT PRIMARY KEY,"
                         + "password TEXT,"
                         + "name TEXT);"
         );
     }
+// 데이터베이스 종류와 버전이 변경되면 실행하여 종류변경 및 버전업 한다
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXIST Member");
+        this.onCreate(db);
+    }
 
-    // DB 업그레이드를 위해 버전이 변경될 때 호출되는 함수
-
-    public void insert(String uid, String password, String name) {
+    public void insert(MemberDTO member) {
+        SQLiteDatabase db = this.getWritableDatabase();
         // DB에 입력한 값으로 행 추가
-        sqlLite.execSQL("INSERT INTO MEMBER VALUES('" + uid + "', " + password + ", '" + name + "');");
-        sqlLite.close();
+        db.execSQL("INSERT INTO Member VALUES('" + member.getUid() + "', "
+                + member.getPassword() + ", '" + member.getName() + "');");
+        db.close();
     }
 
-    public void update(String password, String uid) {
-        // 입력한 항목과 일치하는 행의 가격 정보 수정
-        sqlLite.execSQL("UPDATE MEMBER SET password=" + password + " WHERE uid='" + uid + "';");
-        sqlLite.close();
-    }
-
-    public void delete(String uid) {
-        // 입력한 항목과 일치하는 행 삭제
-        sqlLite.execSQL("DELETE FROM MEMBER WHERE uid='" + uid + "';");
-        sqlLite.close();
-    }
-
-    public String getResult(String uid) {
-        // 읽기가 가능하게 DB 열기
-        sqlLite.execSQL("DELETE FROM MEMBER WHERE uid='" + uid + "';");
-        sqlLite.close();
+    public String getResult(MemberDTO member) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM Member WHERE uid='" + member.getUid() + "';");
+        db.close();
         String result = "";
         // DB에 있는 데이터를 쉽게 처리하기 위해 Cursor를 사용하여 테이블에 있는 모든 데이터 출력
-        Cursor cursor = sqlLite.rawQuery("SELECT * FROM MEMBER", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM Member", null);
         while (cursor.moveToNext()) {
             result += cursor.getString(0)
                     + " , "
@@ -76,6 +57,18 @@ public class MemberDAO {
         }
 
         return result;
+    }
+
+    public void update(MemberDTO member) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("UPDATE Member SET password=" + member.getPassword() + " WHERE uid='" + member.getUid() + "';");
+        db.close();
+    }
+
+    public void delete(MemberDTO member) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM Member WHERE uid='" + member.getUid() + "';");
+        db.close();
     }
 
 
