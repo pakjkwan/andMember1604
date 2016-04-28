@@ -1,9 +1,11 @@
-package com.hanbit.app.myandroid2;
+package com.hanbit.app.myandroid2.member;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.hanbit.app.myandroid2.R;
 
 public class Member extends Activity {
 

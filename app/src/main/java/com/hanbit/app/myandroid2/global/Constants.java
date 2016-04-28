@@ -1,4 +1,4 @@
-package com.hanbit.app.myandroid2;
+package com.hanbit.app.myandroid2.global;
 
 /**
  * Created by USER on 2016-04-28.

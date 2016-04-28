@@ -1,4 +1,4 @@
-package com.hanbit.app.myandroid2;
+package com.hanbit.app.myandroid2.member;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;

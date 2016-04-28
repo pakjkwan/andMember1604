@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".global.MainActivity"
             android:label="메인 액티비티"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -19,40 +19,36 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MemberActivity2"
-            android:label="테이블 액티비티"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Join"
+            android:name=".member.Join"
             android:label="@string/title_activity_join"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Login"
+            android:name=".member.Login"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Board"
+            android:name=".board.Board"
             android:label="@string/title_activity_board"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Write"
+            android:name=".board.Write"
             android:label="@string/title_activity_write"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <provider
-            android:name=".MemberProvider"
-            android:authorities="com.hanbit.app.myandroid2.MemberProvider" />
+            android:name=".member.MemberProvider"
+            android:authorities="com.hanbit.app.myandroid2.member.MemberProvider" />
 
         <activity
-            android:name=".CRUDSample"
+            android:name=".global.CRUDSample"
             android:label="@string/title_activity_crudsample"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Member"
+            android:name=".member.Member"
             android:label="@string/title_activity_member"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Admin"
+            android:name=".admin.Admin"
             android:label="@string/title_activity_admin"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

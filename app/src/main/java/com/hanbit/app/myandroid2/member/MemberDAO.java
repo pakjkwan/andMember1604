@@ -1,9 +1,14 @@
-package com.hanbit.app.myandroid2;
+package com.hanbit.app.myandroid2.member;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.hanbit.app.myandroid2.global.Constants;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by USER on 2016-04-27.
@@ -12,7 +17,7 @@ public class MemberDAO extends SQLiteOpenHelper{
     // DBHelper 생성자로 관리할 DB 이름과 버전 정보를 받음
 
 
-    public MemberDAO(Context context, String name, SQLiteDatabase.CursorFactory factory, int version, Context mContext) {
+    public MemberDAO(Context context) {
         super(context, Constants.DB_HANBIT, null, Constants.DB_VERSION);
     }
 
@@ -39,7 +44,25 @@ public class MemberDAO extends SQLiteOpenHelper{
                 + member.getPassword() + ", '" + member.getName() + "');");
         db.close();
     }
-
+    public List<MemberDTO> selectAll(){
+        List<MemberDTO> list = new ArrayList<MemberDTO>();
+        return list;
+    }
+    public List<MemberDTO> selectByName(MemberDTO member){
+        List<MemberDTO> list = new ArrayList<MemberDTO>();
+        return list;
+    }
+    public MemberDTO selectByID(MemberDTO param){
+        MemberDTO member = new MemberDTO();
+        return member;
+    }
+    public MemberDTO login(MemberDTO param){
+        MemberDTO member = new MemberDTO();
+        return member;
+    }
+    public int count(){
+        return 0;
+    }
     public String getResult(MemberDTO member) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM Member WHERE uid='" + member.getUid() + "';");
